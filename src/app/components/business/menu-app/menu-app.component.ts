@@ -33,8 +33,8 @@ export class MenuAppComponent {
       {
         "id": 2,
         "icon": "fa-sharp fa-solid fa-store nav-icon",
-        "label": "Tienda",
-        "path": "store"
+        "label": "Tiendas",
+        "path": "stores"
       },
       {
         "id": 3,

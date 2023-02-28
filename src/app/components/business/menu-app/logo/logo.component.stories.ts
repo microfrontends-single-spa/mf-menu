@@ -14,10 +14,10 @@ import { reducerForRoot } from "../../../../store";
 const TITULO = `LOGO`;
 
 const SUMMARY = `
-    El componente <strong>LOGO</strong> Presenta el logo de la empresa, en el se definen las siguientes <strong>propiedades</strong>`;
+    El componente <strong>LOGO</strong> presenta el logo de la empresa, en el se definen las siguientes <strong>propiedades</strong>`;
 
 const PROPS = `
-    <li><strong>isOpenMenu</strong>: Cambia el logo según la resolución de la pantalla</li>
+    <li><strong>isOpenMenu</strong>: Cambia el logo según el usuario lo activa o desactiva para una mejor visualizacion del logo </li>
 `;
 
 const COMPONENT_BASE = `

@@ -15,10 +15,10 @@ import { reducerForRoot } from "../../../store";
 const TITULO = `MENU`;
 
 const SUMMARY = `
-    El componente <strong>MENU</strong> Representa el menú de la aplicación, en el se definen las siguientes <strong>propiedades</strong>`;
+    El componente <strong>MENU</strong> representa el menú de la aplicación en un contexto de microfrontends, en el se definen las siguientes <strong>propiedades</strong>`;
 
 const PROPS = `
-    <li><strong>isOpenMenu</strong>: Cambia el ancho del menú y el logo de la aplicación</li>
+    <li><strong>isOpenMenu</strong>: Cambia el ancho del menú y el logo de la aplicación pra una mejor visualización</li>
 `;
 
 const AUTOR = `Luis Amat`;
@@ -32,7 +32,7 @@ export default {
     * See https://storybook.js.org/docs/angular/configure/overview#configure-story-loading
     * to learn how to generate automatic titles
     */
-    title: 'MenuApp',
+    title: 'Menu',
     component: MenuAppComponent,
     decorators: [
         moduleMetadata({
@@ -61,21 +61,58 @@ Base.args = {
         {
             "id": 1,
             "icon": "fa-solid fa-house nav-icon",
-            "label": "Primeros pasos"
-        },
-        {
+            "label": "Primeros pasos",
+            "path": "firts-step"
+          },
+          {
             "id": 2,
             "icon": "fa-sharp fa-solid fa-store nav-icon",
-            "label": "Tienda"
-        },
-        {
+            "label": "Tiendas",
+            "path": "stores"
+          },
+          {
             "id": 3,
             "icon": "fa-solid fa-book nav-icon",
-            "label": "Secciones"
-        }, {
+            "label": "Secciones",
+            "path": "sections"
+          }, 
+          {
             "id": 4,
             "icon": "fa-sharp fa-solid fa-bag-shopping nav-icon",
-            "label": "Productos"
-        }
+            "label": "Productos",
+            "path": "products"
+          },
+          {
+            "id": 5,
+            "icon": "fa-solid fa-bullhorn nav-icon",
+            "label": "Publicidad",
+            "path": "advertising",
+            "childs": [
+              {
+                "id": 51,
+                "icon": "fa-solid fa-house nav-icon",
+                "label": "Plantillas",
+                "path": "templates"
+              },
+              {
+                "id": 52,
+                "icon": "fa-solid fa-house nav-icon",
+                "label": "Segmentos",
+                "path": "segments"
+              },
+              {
+                "id": 53,
+                "icon": "fa-solid fa-house nav-icon",
+                "label": "Configuración",
+                "path": "publicity"
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "icon": "fa-solid fa-message nav-icon",
+            "label": "Whatsapp",
+            "path": "whatsapp"
+          }
     ]
 };
