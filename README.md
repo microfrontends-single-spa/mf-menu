@@ -1,27 +1,45 @@
-# MfMenu
+# Microfrontend Menú
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+<p style='text-align: justify;'> Este proyecto es un microfrontend desarrollado en angular versión 15.1.2 y con single-spa en su version 4.0.0. Su principal función es mostrar al usuario un menú de aplicación. </p>
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<div style="align-item: center; justify-content: center;display: flex;">
+<div>
+<img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-open.png"/>
+</div>
+<div style="margin-left: 50px">
+<img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-close.png"/>
+</div>
+</div>
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Storybook
 
-## Build
+<p style='text-align: justify;'> El proyecto consta de una serie de componentes los cuales pueden ser visualizados e interactuar con ellos a través de los storybooks en el siguiente enlace <a href="https://storybook-mf-menu.netlify.app">Storybook</a>.</p> 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Servidor de desarrollo
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<p style='text-align: justify;'> Primero debemos clonar el código del <a href="https://github.com/lamatcalderon/mf-menu">repositorio</a> y con una terminal instalar las dependencias</p> 
 
-## Running end-to-end tests
+```sh
+npm i
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<p style='text-align: justify;'> Luego debemos ejecutar</p> 
 
-## Further help
+```sh
+npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<p style='text-align: justify;'> Esto levantará un servidor de desarrollo localhost en el puerto 4201 </p> 
+
+
+## Construcción
+
+<p style='text-align: justify;'> Los archivos generados a través del proceso de contrucción se almacenan en la carpeta <strong>dist/mf-menu</strong>, para construir el proyecto debemos ejecutar el siguiente comando en una terminal</p> 
+
+
+```sh
+npm run build:single-spa:mf-menu
+```
