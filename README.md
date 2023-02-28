@@ -5,7 +5,10 @@
 
 <p align="center">
 <img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-open.png"/>
-<img style="margin-left: 40px" src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-close.png"/>
+</p>
+
+<p align="center">
+<img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-close.png"/>
 </p>
 
 
