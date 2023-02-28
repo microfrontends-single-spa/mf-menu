@@ -1,0 +1,9 @@
+<div class="{{APP_PREFIX}}-logo">
+    <div class="container">
+        <div class="logo" [ngClass]="{'short': isOpenMenu}"></div>
+        <div class="option" (click)="openCloseMenu()">
+            <em *ngIf="!isOpenMenu" class="fa-sharp fa-solid fa-bars"></em>
+            <em *ngIf="isOpenMenu" class="fa-solid fa-bars-staggered"></em>
+        </div>
+    </div>
+</div>

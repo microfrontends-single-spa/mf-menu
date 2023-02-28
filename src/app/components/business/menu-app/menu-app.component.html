@@ -1,0 +1,40 @@
+<nav class="{{APP_PREFIX}}-container" [ngClass]="{'short': (isOpenMenu$ | async)}">
+    <logo [isOpenMenu]="(isOpenMenu$ | async)"></logo>
+    <ul class="nav-links">
+        <li *ngFor="let menu of menus" class="nav-link">
+            <a *ngIf="menu.childs && menu.childs.length > 0" href="javascript:void(0)" (click)="menu.active = !menu?.active;" class="nav-link-a"
+                [ngClass]="{'selected': menu.active}">
+                <div class="nav-link-item">
+                    <div>
+                        <em class="{{menu.icon}}"></em>
+                        <span class="nav-label">{{menu.label}}</span>
+                    </div>
+                    <em *ngIf="menu.childs && menu.childs.length > 0" class="fa-solid fa-chevron-down chevron-arrow"></em>
+                </div>
+            </a>
+            <a *ngIf="!(menu.childs && menu.childs.length > 0)" href="javascript:void(0)" (click)="menu.active = !menu?.active;" class="nav-link-a"
+                [routerLink] = "['/', menu.path]"
+                >
+                <div class="nav-link-item">
+                    <div>
+                        <em class="{{menu.icon}}"></em>
+                        <span class="nav-label">{{menu.label}}</span>
+                    </div>
+                    <em *ngIf="menu.childs && menu.childs.length > 0" class="fa-solid fa-chevron-down chevron-arrow"></em>
+                </div>
+            </a>
+            <div class="container-childs" [ngClass]="{'open': menu.active}">
+                <ul class="nav-links-child">
+                    <li *ngFor="let child of menu.childs" class="nav-link-child">
+                        <a href="javascript:void(0)" class="nav-link-child-a" [routerLink]="['/', menu.path, child.path]">
+                            <div class="nav-link-child-item">
+                                <em class="fa-solid fa-chevron-right nav-child-icon"></em>
+                                <span class="nav-child-label">{{child.label}}</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>

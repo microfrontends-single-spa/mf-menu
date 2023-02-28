@@ -1,0 +1,2345 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "IMenuState",
+            "id": "interface-IMenuState-9de1d60c9f888cc457275b7552f9f3fe68fea48f2b1fd8119bca363f0fcee4261c2d427d97d47349bf088b32f752dfc7fd0ada1c3a4ab6b87a7f3da23ed532cd",
+            "file": "src/app/store/business/menu-app.store.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { createAction, createFeatureSelector, createReducer, createSelector, on, props } from \"@ngrx/store\";\n\n//States\ninterface IMenuState {\n    isOpenMenu: boolean\n}\n\nconst state: IMenuState = {\n    isOpenMenu: false\n}\n\n//Actions\nconst setIsOpenMenu = createAction('menuStore/setIsOpenMenu', props<{ isOpenMenu: boolean }>());\n\n//Reduces\nconst menuReducer = createReducer(state,\n    on(setIsOpenMenu, (state, action) => ({ isOpenMenu: action.isOpenMenu }))\n);\n\n//Selectors\nconst getIsOpenMenuState = createFeatureSelector<IMenuState>('menuReducer');\nconst getIsOpenMenu = createSelector(\n    getIsOpenMenuState,\n    (state: IMenuState) => state.isOpenMenu\n);\nexport {\n    setIsOpenMenu,\n    getIsOpenMenu,\n    menuReducer,\n    IMenuState\n}",
+            "properties": [
+                {
+                    "name": "isOpenMenu",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "User",
+            "id": "interface-User-9c7e5f1bbbab702cb032307d130876cb68969b0cd4eedef32a0c8cad8081a54e5f8f577ed6ad4539c1b99a1d246cb34031d198c2ea8eba440e64e91b14f01fdc",
+            "file": "src/stories/User.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface User {}\n",
+            "properties": [],
+            "indexSignatures": [],
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "MenuAppService",
+            "id": "injectable-MenuAppService-d93c2c1c0387b06f70108f941f14c75d3940206dded178cdd292842101e9dcbaac54eec2b5f443e1715e126d4942f41277f79f0534d8ed6c4e62612c460b5c86",
+            "file": "src/app/services/business/menu-app.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getIsOpenMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "openCloseMenu",
+                    "args": [
+                        {
+                            "name": "flag",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "flag",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from \"@angular/core\";\nimport { select, Store } from \"@ngrx/store\";\nimport { IMenuState, getIsOpenMenu, setIsOpenMenu } from \"../../store/business/menu-app.store\";\n\n@Injectable()\nexport class MenuAppService {\n    \n    constructor(private menuStore: Store<{menuReducer: IMenuState}>) {\n\n    }\n\n    getIsOpenMenu(): any {\n        return this.menuStore.pipe(select(getIsOpenMenu));\n    }\n\n    openCloseMenu(flag: boolean) {\n        this.menuStore.dispatch(setIsOpenMenu({isOpenMenu: flag}));\n    }\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "menuStore",
+                        "type": "Store<literal type>",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 6,
+                "jsdoctags": [
+                    {
+                        "name": "menuStore",
+                        "type": "Store<literal type>",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-99224bf4b2f19f617c0f2b665b69f49ebf1760d07acadacca10f3f5511a5ca1c785dee107fbad6ca95353b6b18d74f31727b645a0284c59ec5f4fa285f2c6866",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "mf-menu",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'mf-menu'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'mf-menu',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n  title = 'mf-menu';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<router-outlet></router-outlet>\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-4ef205c97a334c309aa4001c8ab4a6d9571dcae18d0e85aaf0d367467ab5d3a9f13ab3573726f1fcb409bc9b49894dadfb80b1bbe1b6ba7041455ad9d4922004",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhat background color to use\n",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 711,
+                            "end": 724,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 325,
+                            "tagName": {
+                                "pos": 712,
+                                "end": 720,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 40,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHow large should the button be?\n",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 32,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 46,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 48
+                    }
+                }
+            }
+        },
+        {
+            "name": "EmptyRouteComponent",
+            "id": "component-EmptyRouteComponent-ac1c0c3e0464b5bf1187acbfef890ed4a0da1ca7d43f328ba66ec12687da1a45fe509f029b20d200dacef5e83dbe99283fe5fb7d108ad96791164420c9c27213",
+            "file": "src/app/empty-route/empty-route.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-empty-route",
+            "styleUrls": [],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-empty-route',\n  template: '',\n})\nexport class EmptyRouteComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": ""
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-a557eec14f72c438a8033301f4d6ce023e0a1844a3b06ec2b38794a612acc31735ae78a5ee10071b230c8c20d699eb914554e69d07ade54adb371da8efb464cc",
+            "file": "src/stories/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-header",
+            "styleUrls": [
+                "./header.css"
+            ],
+            "styles": [],
+            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "User | null",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 74,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 68,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 71,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n\n.welcome {\n  color: #333;\n  font-size: 14px;\n  margin-right: 10px;\n}\n",
+                    "styleUrl": "./header.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "LogoComponent",
+            "id": "component-LogoComponent-fd93e9fcd4afd1a3d170f05b42f90864e25078227fdc5528a3999f806efb4b771b7fbe23b544b929917af6e40143cdb2d45dd16d5e8b3d37bb868063630ab41a",
+            "file": "src/app/components/business/menu-app/logo/logo.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "logo",
+            "styleUrls": [
+                "./logo.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./logo.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "isOpenMenu",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "boolean | null | undefined",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "APP_PREFIX",
+                    "defaultValue": "APP_PREFIX",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "openCloseMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { MenuAppService } from '../../../../services/business/menu-app.service';\n\nimport { APP_PREFIX } from '../../../../constants/app.constant';\n\n@Component({\n  selector: 'logo',\n  templateUrl: './logo.component.html',\n  styleUrls: ['./logo.component.scss']\n})\nexport class LogoComponent {\n  APP_PREFIX: string = APP_PREFIX;\n  \n  @Input()\n  isOpenMenu: boolean | null | undefined;\n\n  constructor(private menuService: MenuAppService) {\n\n  }\n\n  openCloseMenu() {\n    this.menuService.openCloseMenu(!this.isOpenMenu);\n  }\n}",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../../../assets/styles/variables\";\n\n.#{$app-prefix}-logo {\n    align-items: center;\n    background-color: var(--panel-logo-background-color);\n    color: var(--panel-logo-background-color);\n    display: flex;\n    height: $pix-150;\n    justify-content: center;\n    overflow: hidden;\n    \n    .container {\n        align-items: center;\n        display: flex;\n        height: $pix-150;\n        justify-content: center;\n        min-width: $pix-150;\n        position: relative;\n\n        .logo {\n            //background-image: url('../../../../../assets/resources/logo.png');\n            background-image: url('data:image/png;base64,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EQAAAFCIAAAAgEIEAAAAFCIAAACgEAEAAACFCAAAAChEAAAAQCECAAAAChEAAABQiAAAAIBCBAAAABQiAAAAoBABAAAAhQgAAAAoRAAAAEAhAgAAAAoRAAAAUIgAAACAQgQAAAAUIgAAAKAQAQAAAIUIAAAAKEQAAABAIQIAAAAKEQAAAFCIAAAAgEIEAAAAFCIAAACgEAEAAACFCAAAAChEAAAAQCECAAAAChEAAABQiAAAAIBCBAAAABQiAAAAoBABAAAAhQgAAAAoRAAAAEAhAgAAAAoRAAAAUIgAAACAQgQAAAAUIgAAAKAQAQAAAIUIAAAAKEQAAABAIQIAAAAKEQAAAFCIAAAAgEIEAAAAFCIAAACgEAEAAACFCAAAAChEAAAAQCECAAAAChEAAABQiAAAAIBCBAAAABQiAAAAoBABAAAAhQgAAAAoRAAAAEAhAgAAAAoRAAAAUIgAAACAQgQAAAAUIgAAAKAQAQAAAIUIAAAAKEQAAABAIQIAAAAKEQAAAFCIAAAAgEIEAAAAFCIAAACgEAEAAACFCAAAAChEAAAAQCECAAAAChEAAABQiAAAAIBCBAAAABQiAAAAoBABAAAAhQgAAAAoRAAAAEAhAgAAAAoRAAAAUIgAAACAQgQAAAAUIgAAAKAQAQAAAIUIAAAAKEQAAABAIQIAAAAKEQAAAFCIAAAAgEIEAAAAFCIAAACgEAEAAACFCAAAAChEAAAAQCECAAAAChEAAABQiAAAAIBCBAAAABQiAAAAoBABAAAAhQgAAAAoRAAAAEAhAgAAAAoRAAAAUIgAAACAQgQAAAAUIgAAAKAQAQAAAIUIAAAAKEQAAABAIQIAAAAKEQAAAFCIAAAAgEIEAAAAFCIAAACgEAEAAACFCAAAAChEAAAAQCECAAAAChEAAABQiAAAAIBCBAAAALQxxvx/8HxJC/c008YAAAAASUVORK5CYII=');\n            background-repeat: round;\n            background-size: auto;\n            height: $pix-150;\n            transition: all 0.2s ease-in;\n            width: $pix-150;\n        }\n    \n        .option {\n            align-items: center;\n            background-color: var(--panel-logo-option-background-color);\n            border-radius: $per-50;\n            cursor: pointer;\n            display: flex;\n            height: $pix-40;\n            justify-content: center;\n            width: $pix-40;\n            position: absolute;\n            right: -$pix-60;\n            top: $pix-20;\n        }\n    }    \n}\n\n@media (min-width: $resolution-35em) {\n    .#{$app-prefix}-logo {\n        .container {\n\n            .logo {\n                &.short {\n                    //background-image: url('../../../../../assets/resources/logo-short.png');\n                    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAckAAAGbCAYAAACveWuNAAABN2lDQ1BBZG9iZSBSR0IgKDE5OTgpAAAokZWPv0rDUBSHvxtFxaFWCOLgcCdRUGzVwYxJW4ogWKtDkq1JQ5ViEm6uf/oQjm4dXNx9AidHwUHxCXwDxamDQ4QMBYvf9J3fORzOAaNi152GUYbzWKt205Gu58vZF2aYAoBOmKV2q3UAECdxxBjf7wiA10277jTG+38yH6ZKAyNguxtlIYgK0L/SqQYxBMygn2oQD4CpTto1EE9AqZf7G1AKcv8ASsr1fBBfgNlzPR+MOcAMcl8BTB1da4Bakg7UWe9Uy6plWdLuJkEkjweZjs4zuR+HiUoT1dFRF8jvA2AxH2w3HblWtay99X/+PRHX82Vun0cIQCw9F1lBeKEuf1UYO5PrYsdwGQ7vYXpUZLs3cLcBC7dFtlqF8hY8Dn8AwMZP/fNTP8gAAAAJcEhZcwAADsQAAA7EAZUrDhsAAATtaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0OCA3OS4xNjQwMzYsIDIwMTkvMDgvMTMtMDE6MDY6NTcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMS4wIChXaW5kb3dzKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjEtMDEtMjNUMDA6NDI6NTgtMDU6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIxLTAxLTI4VDA5OjQ3OjQ1LTA1OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIxLTAxLTI4VDA5OjQ3OjQ1LTA1OjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpjYjVlZDQ2MC1jNWRkLTFmNDUtOWMyMy02NmM3MDQyNWM4M2IiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Y2I1ZWQ0NjAtYzVkZC0xZjQ1LTljMjMtNjZjNzA0MjVjODNiIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6Y2I1ZWQ0NjAtYzVkZC0xZjQ1LTljMjMtNjZjNzA0MjVjODNiIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpjYjVlZDQ2MC1jNWRkLTFmNDUtOWMyMy02NmM3MDQyNWM4M2IiIHN0RXZ0OndoZW49IjIwMjEtMDEtMjNUMDA6NDI6NTgtMDU6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4wIChXaW5kb3dzKSIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5HIk5WAABwaUlEQVR4nO3dd3ic5ZU3/u/9lJlR792yJVm2bLlJbnLvxmAw4GAwMYHgXWedXXbZlyz5wRuyBLIpZMMbNiTkjd+QkJAAcWJwwGAwGFzk3iQ3WZLVrN57m3me575/f4xNKB5pJM1ois7nurxXVn7KMbZ05i7n3EwIAUIIIYR8meTpAAghhBBvRUmSEEIIcYCSJCGE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');\n                    height: $pix-50;\n                    width: $pix-50;\n                }\n            }\n\n            .option {\n                right: -$pix-20;\n            }\n        }\n    }\n}",
+                    "styleUrl": "./logo.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "menuService",
+                        "type": "MenuAppService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "menuService",
+                        "type": "MenuAppService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<div class=\"{{APP_PREFIX}}-logo\">\n    <div class=\"container\">\n        <div class=\"logo\" [ngClass]=\"{'short': isOpenMenu}\"></div>\n        <div class=\"option\" (click)=\"openCloseMenu()\">\n            <em *ngIf=\"!isOpenMenu\" class=\"fa-sharp fa-solid fa-bars\"></em>\n            <em *ngIf=\"isOpenMenu\" class=\"fa-solid fa-bars-staggered\"></em>\n        </div>\n    </div>\n</div>"
+        },
+        {
+            "name": "MenuAppComponent",
+            "id": "component-MenuAppComponent-a06b3eca825ddf0d51622acad5d4072be1a5b5c3903119edef6350d9f6114d9bc44e919701d04ebd0948e6f5dff272bdde26d62deeee1ca02e4efd8407528d94",
+            "file": "src/app/components/business/menu-app/menu-app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "menu-app",
+            "styleUrls": [
+                "./menu-app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./menu-app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "APP_PREFIX",
+                    "defaultValue": "APP_PREFIX",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "isOpenMenu$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "menus",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { MenuAppService } from '../../../services/business/menu-app.service';\n\nimport { APP_PREFIX } from '../../../constants/app.constant';\n\n@Component({\n  selector: 'menu-app',\n  templateUrl: './menu-app.component.html',\n  styleUrls: ['./menu-app.component.scss']\n})\nexport class MenuAppComponent {\n  APP_PREFIX: string = APP_PREFIX;\n  isOpenMenu$!: Observable<boolean>;\n  menus: any[] = [];\n\n  constructor(private menuService: MenuAppService) {\n\n  }\n\n  ngOnInit() {\n    this.isOpenMenu$ = this.menuService.getIsOpenMenu();\n\n    this.menus.push(\n      {\n        \"id\": 1,\n        \"icon\": \"fa-solid fa-house nav-icon\",\n        \"label\": \"Primeros pasos\"\n      },\n      {\n        \"id\": 2,\n        \"icon\": \"fa-sharp fa-solid fa-store nav-icon\",\n        \"label\": \"Tienda\"\n      },\n      {\n        \"id\": 3,\n        \"icon\": \"fa-solid fa-book nav-icon\",\n        \"label\": \"Secciones\"\n      }, {\n      \"id\": 4,\n      \"icon\": \"fa-sharp fa-solid fa-bag-shopping nav-icon\",\n      \"label\": \"Productos\"\n    }\n    );\n\n    const handleEventOpenCloseMenu: any = (event: any) => {\n      const detail = event[\"detail\"];\n      if (detail) {\n        this.menuService.openCloseMenu(detail.isOpenMenu);\n      }\n    };\n\n    window.addEventListener(\n      \"evt-open-panel-menu\",\n      handleEventOpenCloseMenu\n    );\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./menu-app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "menuService",
+                        "type": "MenuAppService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "menuService",
+                        "type": "MenuAppService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<nav class=\"{{APP_PREFIX}}-container\" [ngClass]=\"{'short': (isOpenMenu$ | async)}\">\n    <logo [isOpenMenu]=\"(isOpenMenu$ | async)\"></logo>\n    <ul class=\"nav-links\">\n        <li *ngFor=\"let menu of menus\">\n            <a href=\"javascript:void(0)\">\n                <em class=\"{{menu.icon}}\"></em>\n                <span class=\"nav-label\">{{menu.label}}</span>\n            </a>\n        </li>\n    </ul>\n</nav>"
+        },
+        {
+            "name": "PageComponent",
+            "id": "component-PageComponent-7126d8c2607c946741c651482413b43feb72b2d63cac9d3ac173fde206a5e635eb4cdbf7ca7ac9327c7d4d05cf7ef619144c34c11609ad677081d0ee4e855064",
+            "file": "src/stories/page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-page",
+            "styleUrls": [
+                "./page.css"
+            ],
+            "styles": [],
+            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "User | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 64
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "doCreateAccount",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 74,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "doLogin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 70,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "doLogout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 66,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nsection h2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nsection p {\n  margin: 1em 0;\n}\n\nsection a {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nsection ul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nsection li {\n  margin-bottom: 8px;\n}\n\nsection .tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\nsection .tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\nsection .tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\nsection .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
+                    "styleUrl": "./page.css"
+                }
+            ],
+            "stylesData": ""
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-079d286be44ac2a12163cf787bf2773d7881d5ecf58104afe0671d4c56fbc48a6684da4b0b5a65b48d9d4046c65210f113e668b0cd470a34b64cf6a762ea3579",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { StoreModule } from '@ngrx/store';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { MenuAppModule } from './components/business/menu-app/menu-app.module';\nimport { EmptyRouteComponent } from './empty-route/empty-route.component';\nimport { MenuAppService } from './services/business/menu-app.service';\nimport { reducerForRoot } from './store';\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    EmptyRouteComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    MenuAppModule,\n    StoreModule.forRoot(reducerForRoot)\n  ],\n  providers: [MenuAppService],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "MenuAppService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "EmptyRouteComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "MenuAppModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-4a3e61e12284ab550f98afeb3687964a657d8c8a211cb71b058966ba3df77ba010d2659061749c5b42d379a98b2538d045dd7c4463ccc1459842c54899c3bbe2",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { APP_BASE_HREF } from '@angular/common';\nimport { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { MenuAppComponent } from './components/business/menu-app/menu-app.component';\nimport { EmptyRouteComponent } from './empty-route/empty-route.component';\n\nconst routes: Routes = [\n  {\n    path: \"\",\n    component: MenuAppComponent\n  },\n  {\n    path: \"**\", \n    component: EmptyRouteComponent\n  }\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule],\n  providers: [{provide: APP_BASE_HREF, useValue: \"/\"}]\n})\nexport class AppRoutingModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MenuAppModule",
+            "id": "module-MenuAppModule-c0a15fb4bf0d5f9407a8f91e1e777edc93d7ecd0d65b927fb248facd0e1f971dc52f7d1796b1bbd67a7f58291bde29341ef8132e7cefbfc77d7f24ba9cdb068b",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/business/menu-app/menu-app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { MenuAppRoutes } from './menu-app-routing.module';\n\nimport { MenuAppComponent } from './menu-app.component';\nimport { LogoComponent } from './logo/logo.component';\nimport { CommonModule } from '@angular/common';\n\n@NgModule({\n  declarations: [\n    MenuAppComponent,\n    LogoComponent\n  ],\n  imports: [\n    MenuAppRoutes,\n    CommonModule\n  ],\n  providers: [],\n  bootstrap: []\n})\nexport class MenuAppModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LogoComponent"
+                        },
+                        {
+                            "name": "MenuAppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "APP_PREFIX",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/constants/app.constant.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "\"mf-menu\""
+            },
+            {
+                "name": "AUTOR",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`Luis Amat`"
+            },
+            {
+                "name": "AUTOR",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`Luis Amat`"
+            },
+            {
+                "name": "Base",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Base",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "bootstrap",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/main.single-spa.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "lifecycles.bootstrap"
+            },
+            {
+                "name": "COMPONENT_BASE",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n<div style=\"width: 100%; margin-top: 20px\">\n    <logo></logo>\n</div>`"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "getIsOpenMenu",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/business/menu-app.store.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createSelector(\n    getIsOpenMenuState,\n    (state: IMenuState) => state.isOpenMenu\n)"
+            },
+            {
+                "name": "getIsOpenMenuState",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/business/menu-app.store.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createFeatureSelector<IMenuState>('menuReducer')"
+            },
+            {
+                "name": "HISTORY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n    <span>[2023-01-30][Luis Amat] Creación del componente</span>\n`"
+            },
+            {
+                "name": "HISTORY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n    <span>[2023-01-30][Luis Amat] Creación del componente</span>\n`"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "lifecycles",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/main.single-spa.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "singleSpaAngular({\n  bootstrapFunction: singleSpaProps => {\n    singleSpaPropsSubject.next(singleSpaProps);\n    return platformBrowserDynamic(getSingleSpaExtraProviders()).bootstrapModule(AppModule);\n  },\n  template: '<mf-menu/>',\n  Router,\n  NavigationStart,\n  NgZone,\n})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "MenuAppRoutes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app-routing.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "RouterModule.forRoot(routes)"
+            },
+            {
+                "name": "menuReducer",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/business/menu-app.store.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createReducer(state,\n    on(setIsOpenMenu, (state, action) => ({ isOpenMenu: action.isOpenMenu }))\n)"
+            },
+            {
+                "name": "mount",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/main.single-spa.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "lifecycles.mount"
+            },
+            {
+                "name": "PLANTILLA_HTML",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/constants/storybook.constant.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n<div class=\"storybook-contenedor\">\n    <span class=\"storybook-titulo\">$$TITULO$$</span>\n    <div class=\"storybook-cuerpo\">\n        <div>\n            <p class=\"storybook-resumen storybook-texto\">$$SUMMARY$$</p>\n            <ul class=\"storybook-propiedades\" style=\"margin-top: 20px\">\n                $$PROPS$$\n            </ul>\n            <div style=\"display:flex;align-items: center;justify-content: center;\">\n                $$COMPONENT$$\n            </div>\n            <div style=\"margin-top: 10px\">\n                <p class=\"storybook-resumen storybook-texto\"><strong>Autor:</strong> $$AUTOR$$</p>\n            </div>\n            <div class=\"storybook-historial\" style=\"margin-top: 10px\">\n                <p class=\"storybook-resumen\" style=\"margin-bottom: 10px\"><strong>Historial de modificaciones</strong></p>\n                $$HISTORY$$\n            </div>\n        </div>\n    </div>\n</div>`"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "PROPS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n    <li><strong>isOpenMenu</strong>: Cambia el ancho del menú y el logo de la aplicación</li>\n`"
+            },
+            {
+                "name": "PROPS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n    <li><strong>isOpenMenu</strong>: Cambia el logo según la resolución de la pantalla</li>\n`"
+            },
+            {
+                "name": "reducerForRoot",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/index.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n    menuReducer\n}"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "setIsOpenMenu",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/business/menu-app.store.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "createAction('menuStore/setIsOpenMenu', props<{ isOpenMenu: boolean }>())"
+            },
+            {
+                "name": "singleSpaPropsSubject",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/single-spa/single-spa-props.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new ReplaySubject<SingleSpaProps>(1)"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "state",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/store/business/menu-app.store.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "IMenuState",
+                "defaultValue": "{\n    isOpenMenu: false\n}"
+            },
+            {
+                "name": "SUMMARY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n    El componente <strong>MENU</strong> Representa el menú de la aplicación, en el se definen las siguientes <strong>propiedades</strong>`"
+            },
+            {
+                "name": "SUMMARY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\n    El componente <strong>LOGO</strong> Presenta el logo de la empresa, en el se definen las siguientes <strong>propiedades</strong>`"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Header>",
+                "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Page>",
+                "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Button>",
+                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "(args) => ({\n    moduleMetadata: {\n        providers: [\n            { provide: MenuAppService }\n        ]\n    },\n    props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "(args) => ({\n    moduleMetadata: {\n        providers: [\n            { provide: MenuAppService }\n        ]\n    },\n    props: args,\n})"
+            },
+            {
+                "name": "TITULO",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`MENU`"
+            },
+            {
+                "name": "TITULO",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`LOGO`"
+            },
+            {
+                "name": "unmount",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/main.single-spa.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "lifecycles.unmount"
+            }
+        ],
+        "functions": [
+            {
+                "name": "assetUrl",
+                "file": "src/single-spa/asset-url.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "url",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "string",
+                "jsdoctags": [
+                    {
+                        "name": "url",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
+        "typealiases": [
+            {
+                "name": "SingleSpaProps",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "",
+                "file": "src/single-spa/single-spa-props.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 187
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/constants/app.constant.ts": [
+                {
+                    "name": "APP_PREFIX",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/constants/app.constant.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "\"mf-menu\""
+                }
+            ],
+            "src/app/components/business/menu-app/menu-app.component.stories.ts": [
+                {
+                    "name": "AUTOR",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`Luis Amat`"
+                },
+                {
+                    "name": "Base",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "HISTORY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n    <span>[2023-01-30][Luis Amat] Creación del componente</span>\n`"
+                },
+                {
+                    "name": "PROPS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n    <li><strong>isOpenMenu</strong>: Cambia el ancho del menú y el logo de la aplicación</li>\n`"
+                },
+                {
+                    "name": "SUMMARY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n    El componente <strong>MENU</strong> Representa el menú de la aplicación, en el se definen las siguientes <strong>propiedades</strong>`"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "(args) => ({\n    moduleMetadata: {\n        providers: [\n            { provide: MenuAppService }\n        ]\n    },\n    props: args,\n})"
+                },
+                {
+                    "name": "TITULO",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`MENU`"
+                }
+            ],
+            "src/app/components/business/menu-app/logo/logo.component.stories.ts": [
+                {
+                    "name": "AUTOR",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`Luis Amat`"
+                },
+                {
+                    "name": "Base",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "COMPONENT_BASE",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n<div style=\"width: 100%; margin-top: 20px\">\n    <logo></logo>\n</div>`"
+                },
+                {
+                    "name": "HISTORY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n    <span>[2023-01-30][Luis Amat] Creación del componente</span>\n`"
+                },
+                {
+                    "name": "PROPS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n    <li><strong>isOpenMenu</strong>: Cambia el logo según la resolución de la pantalla</li>\n`"
+                },
+                {
+                    "name": "SUMMARY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n    El componente <strong>LOGO</strong> Presenta el logo de la empresa, en el se definen las siguientes <strong>propiedades</strong>`"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "(args) => ({\n    moduleMetadata: {\n        providers: [\n            { provide: MenuAppService }\n        ]\n    },\n    props: args,\n})"
+                },
+                {
+                    "name": "TITULO",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`LOGO`"
+                }
+            ],
+            "src/main.single-spa.ts": [
+                {
+                    "name": "bootstrap",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/main.single-spa.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "lifecycles.bootstrap"
+                },
+                {
+                    "name": "lifecycles",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/main.single-spa.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "singleSpaAngular({\n  bootstrapFunction: singleSpaProps => {\n    singleSpaPropsSubject.next(singleSpaProps);\n    return platformBrowserDynamic(getSingleSpaExtraProviders()).bootstrapModule(AppModule);\n  },\n  template: '<mf-menu/>',\n  Router,\n  NavigationStart,\n  NgZone,\n})"
+                },
+                {
+                    "name": "mount",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/main.single-spa.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "lifecycles.mount"
+                },
+                {
+                    "name": "unmount",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/main.single-spa.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "lifecycles.unmount"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/app/store/business/menu-app.store.ts": [
+                {
+                    "name": "getIsOpenMenu",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/business/menu-app.store.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createSelector(\n    getIsOpenMenuState,\n    (state: IMenuState) => state.isOpenMenu\n)"
+                },
+                {
+                    "name": "getIsOpenMenuState",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/business/menu-app.store.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createFeatureSelector<IMenuState>('menuReducer')"
+                },
+                {
+                    "name": "menuReducer",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/business/menu-app.store.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createReducer(state,\n    on(setIsOpenMenu, (state, action) => ({ isOpenMenu: action.isOpenMenu }))\n)"
+                },
+                {
+                    "name": "setIsOpenMenu",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/business/menu-app.store.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "createAction('menuStore/setIsOpenMenu', props<{ isOpenMenu: boolean }>())"
+                },
+                {
+                    "name": "state",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/business/menu-app.store.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IMenuState",
+                    "defaultValue": "{\n    isOpenMenu: false\n}"
+                }
+            ],
+            "src/stories/Button.stories.ts": [
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<Button>",
+                    "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Header.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<Header>",
+                    "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Page.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<Page>",
+                    "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/business/menu-app/menu-app-routing.module.ts": [
+                {
+                    "name": "MenuAppRoutes",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/business/menu-app/menu-app-routing.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "RouterModule.forRoot(routes)"
+                }
+            ],
+            "src/app/constants/storybook.constant.ts": [
+                {
+                    "name": "PLANTILLA_HTML",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/constants/storybook.constant.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\n<div class=\"storybook-contenedor\">\n    <span class=\"storybook-titulo\">$$TITULO$$</span>\n    <div class=\"storybook-cuerpo\">\n        <div>\n            <p class=\"storybook-resumen storybook-texto\">$$SUMMARY$$</p>\n            <ul class=\"storybook-propiedades\" style=\"margin-top: 20px\">\n                $$PROPS$$\n            </ul>\n            <div style=\"display:flex;align-items: center;justify-content: center;\">\n                $$COMPONENT$$\n            </div>\n            <div style=\"margin-top: 10px\">\n                <p class=\"storybook-resumen storybook-texto\"><strong>Autor:</strong> $$AUTOR$$</p>\n            </div>\n            <div class=\"storybook-historial\" style=\"margin-top: 10px\">\n                <p class=\"storybook-resumen\" style=\"margin-bottom: 10px\"><strong>Historial de modificaciones</strong></p>\n                $$HISTORY$$\n            </div>\n        </div>\n    </div>\n</div>`"
+                }
+            ],
+            "src/app/store/index.ts": [
+                {
+                    "name": "reducerForRoot",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/store/index.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n    menuReducer\n}"
+                }
+            ],
+            "src/single-spa/single-spa-props.ts": [
+                {
+                    "name": "singleSpaPropsSubject",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/single-spa/single-spa-props.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new ReplaySubject<SingleSpaProps>(1)"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            "src/single-spa/asset-url.ts": [
+                {
+                    "name": "assetUrl",
+                    "file": "src/single-spa/asset-url.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "string",
+                    "jsdoctags": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/single-spa/single-spa-props.ts": [
+                {
+                    "name": "SingleSpaProps",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "",
+                    "file": "src/single-spa/single-spa-props.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 187
+                }
+            ]
+        }
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "component": "MenuAppComponent"
+                    },
+                    {
+                        "path": "**",
+                        "component": "EmptyRouteComponent"
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 1,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "AUTOR",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Base",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "COMPONENT_BASE",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "HISTORY",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PROPS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SUMMARY",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TITULO",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/logo/logo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LogoComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app-routing.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MenuAppRoutes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "AUTOR",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Base",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "HISTORY",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PROPS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SUMMARY",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TITULO",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/business/menu-app/menu-app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MenuAppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/constants/app.constant.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "APP_PREFIX",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/constants/storybook.constant.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PLANTILLA_HTML",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/empty-route/empty-route.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "EmptyRouteComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/services/business/menu-app.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "MenuAppService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/business/menu-app.store.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IMenuState",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/business/menu-app.store.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "getIsOpenMenu",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/business/menu-app.store.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "getIsOpenMenuState",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/business/menu-app.store.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "menuReducer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/business/menu-app.store.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "setIsOpenMenu",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/business/menu-app.store.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "state",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/store/index.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "reducerForRoot",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/main.single-spa.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "bootstrap",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/main.single-spa.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "lifecycles",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/main.single-spa.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mount",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/main.single-spa.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "unmount",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/single-spa/asset-url.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "assetUrl",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/single-spa/single-spa-props.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "singleSpaPropsSubject",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/User.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            }
+        ]
+    }
+}
