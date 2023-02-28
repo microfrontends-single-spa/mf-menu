@@ -3,14 +3,10 @@
 <p style='text-align: justify;'> Este proyecto es un microfrontend desarrollado en angular versión 15.1.2 y con single-spa en su version 4.0.0. Su principal función es mostrar al usuario un menú de aplicación. </p>
 
 
-<div style="align-item: center; justify-content: center;display: flex;">
-<div>
+<p align="center">
 <img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-open.png"/>
-</div>
-<div style="margin-left: 50px">
-<img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-close.png"/>
-</div>
-</div>
+<img style="margin-left: 40px" src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-close.png"/>
+</p>
 
 
 ## Storybook
