@@ -1,4 +1,4 @@
-# Microfrontend Menú
+# Microfrontend Menu
 
 <p style='text-align: justify;'> Este proyecto es un microfrontend desarrollado en angular versión 15.1.2 y con single-spa en su version 4.0.0. Su principal función es mostrar al usuario un menú de aplicación. </p>
 
