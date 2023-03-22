@@ -11,6 +11,9 @@
 <img src="https://hme-mf-resources.netlify.app/src/assets/hme-mf-resources/images/menu-close.png"/>
 </p>
 
+## Orquestador
+
+<p style='text-align: justify;'> El orquestador de este microfrontend se encuentra en el siguiente <a href="https://github.com/lamatcalderon/mf-root-config">repositorio</a> </p>
 
 ## Storybook
 
