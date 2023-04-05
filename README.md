@@ -13,7 +13,7 @@
 
 ## Orquestador
 
-<p style='text-align: justify;'> El orquestador de este microfrontend se encuentra en el siguiente <a href="https://github.com/lamatcalderon/mf-root-config">repositorio</a> </p>
+<p style='text-align: justify;'> El orquestador de este microfrontend se encuentra en el siguiente <a href="https://github.com/microfrontends-single-spa/mf-root-config">repositorio</a> </p>
 
 ## Storybook
 
@@ -22,7 +22,7 @@
 
 ## Servidor de desarrollo
 
-<p style='text-align: justify;'> Primero debemos clonar el código del <a href="https://github.com/lamatcalderon/mf-menu">repositorio</a> y con una terminal instalar las dependencias</p> 
+<p style='text-align: justify;'> Primero debemos clonar el código del <a href="https://github.com/microfrontends-single-spa/mf-menu">repositorio</a> y con una terminal instalar las dependencias</p> 
 
 ```sh
 npm i
